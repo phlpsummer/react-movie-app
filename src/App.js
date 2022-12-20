@@ -1,42 +1,27 @@
-function Coffee({fav, say}) {
-    return (
-        <div>
-            <h1>{fav}는 말이야!</h1>
-            <p>{say}</p>
-        </div>
-    );
-}
+import React from 'react';
 
-const CoffeeList = [
-    {
-        id: 1,
-        name : "Latte",
-        comment : "라떼는 1이야",
-        rating: 5
-    },
-    {
-        id: 2,
-        name: "Americano",
-        comment: "아메리카노는 2야",
-        rating: 4.7
-    },
-    {
-        id: 3,
-        name: "Cappuccino",
-        comment: "카푸치노는 3이야",
-        rating: 3.2
+class App extends React.Component {
+    state = {
+        count: 0
+    };
+    add = () => { 
+        console.log('더하기');
+        this.setState({ count: this.state.count+1});
+    };
+    minus = () => {
+        console.log('빼기');
+        this.setState(current => ({ count: current.count-1}));
+    };
+
+    render() {
+        return (
+            <div>
+                <h1> 현재 값은: {this.state.count}</h1>
+                <button onClick={this.add}>더하기</button>
+                <button onClick={this.minus}>빼기</button>
+            </div>
+        )
     }
-]
-
-function App() {
-    return (
-        <div className="App">
-            <p>연습입니다. 안녕하세요</p>
-            {CoffeeList.map(menu => <Coffee key={menu.id} fav={menu.name} say={menu.comment}/>)}
-        </div>
-    );
 }
-
-
 
 export default App;
